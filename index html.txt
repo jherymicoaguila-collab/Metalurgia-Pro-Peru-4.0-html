@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7177170175762185"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METLAB Pro - Engineering Ecosystem 2026</title>
+    <!-- Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-light: #ffffff;
+            --slate-50: #f8fafc;
+            --indigo-600: #4f46e5;
+            --amber-500: #f59e0b;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-light);
+            margin: 0;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+        .font-brand { font-family: 'Syne', sans-serif; }
+        
+        .neo-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.03);
+            border-radius: 40px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .neo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.06);
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--indigo-600);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ai-bubble {
+            max-width: 85%;
+            padding: 1.25rem;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .typing-dot {
+            width: 6px; height: 6px;
+            background: var(--indigo-600);
+            border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* Custom Markdown Styling for AI responses */
+        .ai-response h3 { font-family: 'Syne', sans-serif; font-style: italic; font-weight: 800; color: #111827; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .ai-response p { margin-bottom: 0.75rem; }
+        .ai-response ul { list-style: none; padding-left: 0.5rem; }
+        .ai-response li { position: relative; padding-left: 1.5rem; margin-bottom: 0.25rem; }
+        .ai-response li::before { content: '▸'; position: absolute; left: 0; color: var(--indigo-600); font-weight: 800; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        
+        .atom-solid {
+            transition: transform 0.8s ease;
+        }
+        .neo-card:hover .atom-solid {
+            transform: rotate(15deg) scale(1.05);
+        }
+    </style>
+
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+</head>
+<body class="p-4 md:p-8 lg:p-12">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-100">
+                    <i class="fas fa-layer-group text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-brand tracking-tighter uppercase italic leading-none">
+                        MET<span class="text-indigo-600">LAB</span>
+                    </h1>
+                    <p class="text-[9px] font-black text-slate-400 tracking-[0.4em] uppercase mt-1">Engineering Ecosystem 2026</p>
+                </div>
+            </div>
+            
+            <nav class="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 gap-1">
+                <button onclick="switchTab('Dashboard')" id="tab-Dashboard" class="tab-btn active px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Dashboard</button>
+                <button onclick="switchTab('Market')" id="tab-Market" class="tab-btn px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all text-slate-500">Market</button>
+                <button onclick="switchTab('VisualLab')" id="tab-VisualLab" class="tab-btn px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all text-slate-500">Visual Lab</button>
+            </nav>
+        </header>
+
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-10">
+            <!-- Main Content Area -->
+            <div class="xl:col-span-7 space-y-10">
+                
+                <!-- VIEW: Dashboard -->
+                <div id="view-Dashboard" class="space-y-10">
+                    <section class="neo-card p-10 lg:p-14 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
+                        <div class="flex-1 relative z-10">
+                            <span class="text-indigo-600 font-black text-[10px] tracking-widest uppercase mb-4 block">Knowledge Hub</span>
+                            <h2 class="hero-title font-main mb-6">
+                                Domina la <br>
+                                <span class="text-gradient-purple">Metalurgia</span> 
+                                <span class="text-amber-500">2026</span>
+                            </h2>
+                            <p class="text-slate-500 text-lg font-medium leading-relaxed max-w-lg mb-12">
+                                El 2026 es el año de la consolidación. Con el Puerto de Chancay operando al 100%, las oportunidades en exportación minera no tienen precedentes.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
+                                <div class="bg-indigo-50/40 p-7 rounded-3xl border border-indigo-100/50 flex gap-4 items-start">
+                                    <div class="w-11 h-11 bg-indigo-600 text-white rounded-xl flex-shrink-0 flex items-center justify-center shadow-md shadow-indigo-100"><i class="fas fa-microchip"></i></div>
+                                    <div>
+                                        <h4 class="font-extrabold text-slate-900 text-sm mb-1 italic">Procesos 2026</h4>
+                                        <p class="text-xs text-slate-500 leading-relaxed">Uso masivo de sensores IoT y análisis predictivo en planta.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50/40 p-7 rounded-3xl border border-amber-100/50 flex gap-4 items-start">
+                                    <div class="w-11 h-11 bg-amber-500 text-white rounded-xl flex-shrink-0 flex items-center justify-center shadow-md shadow-amber-100"><i class="fas fa-leaf"></i></div>
+                                    <div>
+                                        <h4 class="font-extrabold text-slate-900 text-sm mb-1 italic">Impacto Verde</h4>
+                                        <p class="text-xs text-slate-500 leading-relaxed">Nuevas normativas de descarbonización para el sector.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Solid Atom SVG (Right Side) -->
+                        <div class="hidden md:flex flex-shrink-0 justify-center items-center">
+                            <svg class="atom-solid" width='180' height='180' viewBox='0 0 24 24' fill='currentColor' style='color: #e5e7eb; opacity: 0.6;'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14Z'/>
+                            </svg>
+                        </div>
+                    </section>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="neo-card p-8 flex flex-col items-center text-center">
+                            <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-building text-lg"></i></div>
+                            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Empresas Top</h5>
+                            <p class="text-3xl font-brand text-slate-900">50+</p>
+                            <p class="text-[10px] font-bold text-slate-500 mt-1 uppercase">Corporaciones Activas</p>
+                        </div>
+                        <div class="neo-card p-8 flex flex-col items-center text-center">
+                            <div class="w-12 h-12 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-bolt text-lg"></i></div>
+                            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Demanda Lab.</h5>
+                            <p class="text-3xl font-brand text-slate-900">Sólida</p>
+                            <p class="text-[10px] font-bold text-slate-500 mt-1 uppercase">Proyección 2026-2030</p>
+                        </div>
+                        <div class="neo-card p-8 flex flex-col items-center text-center">
+                            <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-location-dot text-lg"></i></div>
+                            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Región Clave</h5>
+                            <p class="text-3xl font-brand text-slate-900">Sur/Norte</p>
+                            <p class="text-[10px] font-bold text-slate-500 mt-1 uppercase">Arequipa & La Libertad</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: Market -->
+                <div id="view-Market" class="hidden space-y-10">
+                    <section class="neo-card p-10">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl font-brand italic text-slate-900">Sueldo Mensual 2026 (S/)</h3>
+                            <i class="fas fa-chart-simple text-indigo-600"></i>
+                        </div>
+                        <div class="h-[350px]">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                    </section>
+
+                    <section class="neo-card p-10 space-y-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600"><i class="fas fa-briefcase text-xl"></i></div>
+                            <h3 class="text-2xl font-brand italic">Buscador de Empleos 2026</h3>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="job-input" placeholder="Ej: 'Jefe de Planta' o 'Practicante 2026'" class="w-full bg-slate-50 border-2 border-transparent focus:border-indigo-600 rounded-2xl px-8 py-5 text-sm font-semibold outline-none transition-all">
+                            <button onclick="handleJobSearch()" id="job-btn" class="absolute right-2 top-2 bottom-2 bg-indigo-600 text-white px-8 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 transition-all">BUSCAR</button>
+                        </div>
+                        <div id="job-results" class="hidden bg-slate-50 rounded-3xl p-8 ai-response text-sm leading-relaxed"></div>
+                    </section>
+                </div>
+
+                <!-- VIEW: Visual Lab -->
+                <div id="view-VisualLab" class="hidden space-y-10">
+                    <section class="neo-card p-10 space-y-8">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-3xl font-brand italic text-slate-900">Visual Lab Pro 2026</h3>
+                            <i class="fas fa-wand-magic-sparkles text-indigo-600 text-2xl"></i>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-4">
+                                <div id="drop-zone" class="aspect-video bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center relative overflow-hidden group transition-all hover:border-indigo-400 cursor-pointer">
+                                    <div id="upload-label" class="text-center">
+                                        <i class="fas fa-image text-4xl text-slate-200 mb-4"></i>
+                                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">SUBIR IMAGEN</p>
+                                    </div>
+                                    <img id="preview-img" class="hidden absolute inset-0 w-full h-full object-cover">
+                                    <input type="file" id="file-input" class="absolute inset-0 opacity-0 cursor-pointer" accept="image/*">
+                                </div>
+                            </div>
+                            <div id="result-zone" class="aspect-video bg-slate-50 rounded-3xl border border-slate-100 flex items-center justify-center relative overflow-hidden shadow-inner">
+                                <p id="result-placeholder" class="text-[10px] text-slate-300 font-bold uppercase italic tracking-widest">ESPERANDO...</p>
+                                <img id="result-img" class="hidden absolute inset-0 w-full h-full object-cover">
+                                <div id="visual-loading" class="hidden flex flex-col items-center gap-3">
+                                    <div class="w-10 h-10 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin"></div>
+                                    <p class="text-[10px] font-black text-indigo-600 uppercase tracking-widest">GENERANDO...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="visual-prompt" placeholder="Instrucción (Ej: 'Convierte este plano en una visualización 3D')" class="w-full bg-slate-50 border-2 border-transparent focus:border-indigo-600 rounded-2xl px-8 py-5 text-sm font-semibold outline-none transition-all">
+                            <button onclick="handleVisualLab()" id="visual-btn" class="absolute right-2 top-2 bottom-2 bg-indigo-600 text-white px-8 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 transition-all">EJECUTAR</button>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
+            <!-- Right Column (AI Advisor) -->
+            <div class="xl:col-span-5 h-[85vh] flex flex-col">
+                <div class="neo-card flex flex-col h-full overflow-hidden border-2 border-slate-100 bg-slate-50/30">
+                    <div class="p-8 bg-white border-b border-slate-100 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-robot text-xl"></i></div>
+                            <div>
+                                <h4 class="font-brand text-xl leading-none italic">IA ADVISOR 2026</h4>
+                                <p class="text-[9px] font-black text-indigo-600 uppercase tracking-widest mt-1">Soporte Estratégico Activo</p>
+                            </div>
+                        </div>
+                        <button onclick="clearChat()" class="text-slate-300 hover:text-red-500 transition-all"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+
+                    <div id="chat-messages" class="flex-grow overflow-y-auto p-8 space-y-8">
+                        <div id="chat-empty" class="h-full flex flex-col items-center justify-center text-center">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-slate-100">
+                                <i class="fas fa-sparkles text-2xl text-indigo-400"></i>
+                            </div>
+                            <h5 class="text-xl font-brand italic mb-2">Consultoría Metalúrgica</h5>
+                            <p class="text-sm font-medium text-slate-500 mb-8 max-w-xs text-center">Explora el futuro de tu carrera con IA de última generación.</p>
+                            
+                            <div class="grid grid-cols-1 gap-2 w-full">
+                                <button onclick="sendSuggestion('¿Cuál es el impacto del Puerto de Chancay en mi carrera?')" class="bg-white p-4 rounded-2xl border border-slate-100 text-left text-xs font-bold hover:border-indigo-500 transition-all flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-500"><i class="fas fa-ship"></i></div>
+                                    <span>Impacto de Chancay 2026</span>
+                                </button>
+                                <button onclick="sendSuggestion('Proyección salarial de un Metalurgista Senior')" class="bg-white p-4 rounded-2xl border border-slate-100 text-left text-xs font-bold hover:border-indigo-500 transition-all flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-500"><i class="fas fa-sack-dollar"></i></div>
+                                    <span>Salario Senior 2026</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 bg-white border-t border-slate-100">
+                        <div class="relative">
+                            <input type="text" id="chat-input" placeholder="Analizar mi futuro..." class="w-full bg-slate-50 border-none rounded-2xl pl-8 pr-28 py-5 font-bold outline-none focus:ring-4 focus:ring-indigo-50/50 transition-all">
+                            <button onclick="handleChatSend()" id="chat-btn" class="absolute right-2 top-2 bottom-2 bg-slate-900 text-white px-8 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-indigo-600 transition-all">ANALIZAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-20 py-12 border-t border-slate-100 text-center opacity-30">
+            <p class="text-[10px] font-black uppercase tracking-[1em] text-slate-300">© 2026 METLAB PERÚ • ENGINEERING ECOSYSTEM</p>
+        </footer>
+    </div>
+
+    <!-- Script Area -->
+    <script type="module">
+        import { GoogleGenAI } from "@google/genai";
+
+        // Gemini Config
+        const apiKey = window.process?.env?.API_KEY || "";
+        const genAI = new GoogleGenAI({ apiKey });
+
+        // Tab Switching Logic
+        window.switchTab = (tabName) => {
+            document.querySelectorAll('[id^="view-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'text-indigo-600');
+                btn.classList.add('text-slate-500');
+            });
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.add('active', 'text-indigo-600');
+            activeBtn.classList.remove('text-slate-500');
+
+            if (tabName === 'Market') initChart();
+        };
+
+        // Chart.js Logic
+        let chartInstance = null;
+        function initChart() {
+            if (chartInstance) chartInstance.destroy();
+            const ctx = document.getElementById('marketChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Minas', 'Metalurgia', 'Sistemas', 'Civil', 'Industrial'],
+                    datasets: [{
+                        label: 'Sueldo Promedio (S/) 2026',
+                        data: [6800, 6400, 6100, 5200, 4800],
+                        backgroundColor: (c) => c.index === 1 ? '#f59e0b' : '#4f46e5',
+                        borderRadius: 12,
+                        barThickness: 55
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                        x: { grid: { display: false }, ticks: { font: { weight: '800' } } }
+                    }
+                }
+            });
+        }
+
+        // Chat Logic
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatEmpty = document.getElementById('chat-empty');
+
+        window.handleChatSend = async () => {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            chatInput.value = '';
+            processChat(text);
+        };
+
+        window.sendSuggestion = (text) => processChat(text);
+
+        async function processChat(text) {
+            chatEmpty.classList.add('hidden');
+            appendMessage('user', text);
+            
+            const typingId = showTyping();
+            try {
+                const response = await genAI.models.generateContent({
+                    model: "gemini-3-pro-preview",
+                    contents: text,
+                    config: {
+                        systemInstruction: `Eres "METLAB ADVISOR 2026". Responde profesionalmente sobre ingeniería metalúrgica en Perú.
+                        - Usa ### para títulos de sección.
+                        - Usa viñetas ▸ para listas.
+                        - Resalta cifras en **negrita**.
+                        - Habla siempre de proyecciones al año 2026.`
+                    }
+                });
+                removeTyping(typingId);
+                appendMessage('model', response.text);
+            } catch (error) {
+                removeTyping(typingId);
+                appendMessage('model', "Error al conectar con la IA 2026. Reintenta pronto.");
+            }
+        }
+
+        function appendMessage(role, text) {
+            const div = document.createElement('div');
+            div.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = `ai-bubble ${role === 'user' ? 'bg-indigo-600 text-white font-bold' : 'bg-white border border-slate-100 shadow-sm ai-response'}`;
+            
+            if (role === 'model') {
+                bubble.innerHTML = text.split('\n').map(line => {
+                    if (line.startsWith('###')) return `<h3>${line.replace(/###\s*/, '')}</h3>`;
+                    if (line.startsWith('•') || line.startsWith('▸')) return `<li>${line.replace(/[•▸]\s*/, '')}</li>`;
+                    if (line.trim() === '') return '';
+                    return `<p>${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
+                }).join('');
+            } else {
+                bubble.innerText = text;
+            }
+
+            div.appendChild(bubble);
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            const id = 'typing-' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = "flex justify-start";
+            div.innerHTML = `<div class="bg-white p-4 rounded-full flex gap-1 px-6 border border-slate-100"><div class="typing-dot"></div><div class="typing-dot" style="animation-delay:0.2s"></div><div class="typing-dot" style="animation-delay:0.4s"></div></div>`;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return id;
+        }
+
+        function removeTyping(id) { document.getElementById(id)?.remove(); }
+        window.clearChat = () => { chatMessages.innerHTML = ''; chatMessages.appendChild(chatEmpty); chatEmpty.classList.remove('hidden'); };
+
+        // Job Search Logic
+        window.handleJobSearch = async () => {
+            const query = document.getElementById('job-input').value.trim();
+            const resultsDiv = document.getElementById('job-results');
+            const btn = document.getElementById('job-btn');
+            if (!query) return;
+
+            btn.disabled = true;
+            btn.innerText = 'BUSCANDO...';
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.innerText = 'Buscando las mejores oportunidades 2026...';
+
+            try {
+                const response = await genAI.models.generateContent({
+                    model: "gemini-3-pro-preview",
+                    contents: `Busca empleos reales de: ${query} en Perú para el año 2026.`,
+                    config: {
+                        tools: [{ googleSearch: {} }],
+                        systemInstruction: `Presenta los trabajos como: 🏢 Empresa | 🎯 Cargo | 📍 Ubicación. Máximo 5 resultados.`
+                    }
+                });
+                resultsDiv.innerHTML = response.text.split('\n').map(l => `<p>${l}</p>`).join('');
+            } catch (e) {
+                resultsDiv.innerText = 'Error al recuperar vacantes.';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'BUSCAR';
+            }
+        };
+
+        // Visual Lab Logic
+        let base64Img = null;
+        document.getElementById('file-input').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    base64Img = ev.target.result;
+                    document.getElementById('preview-img').src = base64Img;
+                    document.getElementById('preview-img').classList.remove('hidden');
+                    document.getElementById('upload-label').classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        window.handleVisualLab = async () => {
+            const prompt = document.getElementById('visual-prompt').value.trim();
+            if (!base64Img || !prompt) {
+                alert("Sube una imagen y escribe una instrucción.");
+                return;
+            }
+
+            const btn = document.getElementById('visual-btn');
+            const loading = document.getElementById('visual-loading');
+            const resultImg = document.getElementById('result-img');
+            const placeholder = document.getElementById('result-placeholder');
+
+            btn.disabled = true;
+            loading.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+            resultImg.classList.add('hidden');
+
+            try {
+                const response = await genAI.models.generateContent({
+                    model: 'gemini-2.5-flash-image',
+                    contents: {
+                        parts: [
+                            { inlineData: { data: base64Img.split(',')[1], mimeType: 'image/png' } },
+                            { text: prompt }
+                        ]
+                    }
+                });
+
+                let found = false;
+                for (const part of response.candidates[0].content.parts) {
+                    if (part.inlineData) {
+                        resultImg.src = `data:image/png;base64,${part.inlineData.data}`;
+                        resultImg.classList.remove('hidden');
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) placeholder.innerText = 'No se generó imagen.';
+            } catch (err) {
+                placeholder.innerText = 'Error de procesamiento.';
+                placeholder.classList.remove('hidden');
+            } finally {
+                loading.classList.add('hidden');
+                btn.disabled = false;
+            }
+        };
+
+        // Initial view
+        switchTab('Dashboard');
+
+        // Global key handlers
+        document.getElementById('chat-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleChatSend();
+        });
+        document.getElementById('job-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleJobSearch();
+        });
+
+    </script>
+</body>
+</html>
